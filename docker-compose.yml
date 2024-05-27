@@ -1,0 +1,17 @@
+version: '2'
+services:
+  nginx-waf:
+    build: waf-3
+    container_name: nginx-waf
+    #image: docker-waf_edge-ui-waf:latest
+    ports:
+      - 80:80
+      - 443:443
+      #- 17512:7512
+    volumes:
+      - ./app:/usr/local/nginx/html/
+      - ./conf/nginx.conf:/usr/local/nginx/conf/nginx.conf
+      - ./conf/domain.conf:/usr/local/nginx/conf/domain.conf
+      #- ./env.js:/usr/local/nginx/html/env.js
+      #- ./ssl/certs/nginx-selfsigned.key:/etc/ssl/private/nginx-selfsigned.key
+      #- ./ssl/certs/nginx-selfsigned.crt:/etc/ssl/private/nginx-selfsigned.crt
